@@ -21,6 +21,10 @@ module GameOfLife
       neighbors_ids.map{ |i| ObjectSpace._id2ref(i) }
     end
 
+    def neighbor_in pos
+      ObjectSpace._id2ref(send(pos)) if send(pos)
+    end
+
     def neighbors_alive
       neighbors.map(&:status).reduce(&:+)
     end
@@ -31,10 +35,6 @@ module GameOfLife
 
     def add_neighbor neighbor, position
       send(:"#{position.to_s}=", neighbor.object_id)
-    end
-
-    def remove_neighbor position
-      send(:"#{position.to_s}=", nil)
     end
 
     def mitosis
