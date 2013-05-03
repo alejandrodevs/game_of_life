@@ -10,11 +10,7 @@ module GameOfLife
     def new_generation
       evolution
       adjustment
-      generation
-    end
-
-    def statuses
-      @statuses ||= generation.map(&:dup).map(&:mitosis)
+      @generation
     end
 
     def evolution
@@ -25,6 +21,10 @@ module GameOfLife
 
     def adjustment
       AdjustGeneration.new(generation).adjust
+    end
+
+    def statuses
+      @statuses ||= generation.map(&:dup).map(&:mitosis)
     end
 
   end
