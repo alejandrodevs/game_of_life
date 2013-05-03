@@ -25,8 +25,16 @@ module GameOfLife
       neighbors.map(&:status).reduce(&:+)
     end
 
+    def alive?
+      @status == 1
+    end
+
     def add_neighbor neighbor, position
       send(:"#{position.to_s}=", neighbor.object_id)
+    end
+
+    def remove_neighbor position
+      send(:"#{position.to_s}=", nil)
     end
 
     def mitosis

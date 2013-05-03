@@ -24,7 +24,7 @@ module GameOfLife
     end
 
     def adjustment
-      Adjustment.new(generation).adjust
+      AdjustGeneration.new(generation).adjust
     end
 
   end
