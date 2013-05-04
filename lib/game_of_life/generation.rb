@@ -1,8 +1,14 @@
 module GameOfLife
   class Generation < Array
 
+    attr_accessor :evolution
+
+    def initialize
+      @evolution = Evolution.new(self)
+    end
+
     def evolve!
-      Evolution.new(self).new_generation
+      @evolution.new_generation
     end
 
   end

@@ -10,7 +10,6 @@ module GameOfLife
     def new_generation
       evolution
       adjustment
-      @generation
     end
 
     def evolution
