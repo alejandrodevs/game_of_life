@@ -1,10 +1,12 @@
 module GameOfLife
   class Neighbors < Hash
 
-    POSITIONS = [:n, :nw, :w, :sw, :s, :se, :e, :ne]
-
     def [] pos
       instance(fetch(pos){})
+    end
+
+    def positions
+      [:n, :nw, :w, :sw, :s, :se, :e, :ne]
     end
 
     def instances
