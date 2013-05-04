@@ -4,7 +4,7 @@ module GameOfLife
     POSITIONS = [:n, :nw, :w, :sw, :s, :se, :e, :ne]
 
     def [] pos
-      instance(fetch(pos){}.to_i)
+      instance(fetch(pos){})
     end
 
     def instances
@@ -16,11 +16,11 @@ module GameOfLife
     end
 
     def add cell, pos
-      merge!(pos => cell.__id__)
+      merge!(pos => cell.object_id)
     end
 
     def instance id
-      ObjectSpace._id2ref(id)
+      ObjectSpace._id2ref(id.to_i)
     end
 
   end
