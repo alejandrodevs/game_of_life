@@ -8,7 +8,7 @@ module GameOfLife
     end
 
     def evolve
-      @generation = @generation.evolve
+      @generation.evolve!
     end
 
   end

@@ -3,9 +3,11 @@ module GameOfLife
 
     RULES = [[0,0,0,1,0,0,0,0,0], [0,0,1,1,1,0,0,0,0]]
 
-    attr_accessor :n, :s, :e, :w, :ne, :nw, :se, :sw, :status
+    attr_accessor :status, :posx, :posy
+    attr_accessor :n, :s, :e, :w, :ne, :nw, :se, :sw
 
-    def initialize status = 0
+    def initialize position, status = 0
+      @posx, @posy = position
       @status = status
     end
 
@@ -21,23 +23,23 @@ module GameOfLife
       neighbors_ids.map{ |i| ObjectSpace._id2ref(i) }
     end
 
-    def neighbor_in pos
-      ObjectSpace._id2ref(send(pos)) if send(pos)
-    end
-
     def neighbors_alive
       neighbors.map(&:status).reduce(&:+)
+    end
+
+    def neighbor position
+      ObjectSpace._id2ref(send(position).to_i)
+    end
+
+    def neighbor_link cell, position
+      send(:"#{position.to_s}=", cell.object_id)
     end
 
     def alive?
       @status == 1
     end
 
-    def add_neighbor neighbor, position
-      send(:"#{position.to_s}=", neighbor.object_id)
-    end
-
-    def mitosis
+    def mitosis!
       @status = RULES[status][neighbors_alive]
     end
 

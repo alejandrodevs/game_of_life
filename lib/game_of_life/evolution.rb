@@ -24,7 +24,7 @@ module GameOfLife
     end
 
     def statuses
-      @statuses ||= generation.map(&:dup).map(&:mitosis)
+      @statuses ||= generation.map(&:dup).map(&:mitosis!)
     end
 
   end

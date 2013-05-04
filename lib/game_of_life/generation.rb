@@ -1,7 +1,7 @@
 module GameOfLife
   class Generation < Array
 
-    def evolve
+    def evolve!
       Evolution.new(self).new_generation
     end
 
