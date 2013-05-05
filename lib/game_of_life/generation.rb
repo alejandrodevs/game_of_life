@@ -1,12 +1,12 @@
 module GameOfLife
   class Generation < Array
 
-    def initialize
-      @evolution = Evolution.new(self)
+    def evolve!
+      Evolution.new(self).new_generation
     end
 
-    def evolve!
-      @evolution.new_generation
+    def print!
+      Printable.new(self).print!
     end
 
   end

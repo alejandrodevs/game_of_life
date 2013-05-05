@@ -1,5 +1,5 @@
 module GameOfLife
-  class AdjustGeneration
+  class Adjust
 
     def initialize generation
       @generation = generation

@@ -9,5 +9,9 @@ module GameOfLife
       @generation.evolve!
     end
 
+    def print
+      @generation.print!
+    end
+
   end
 end
