@@ -19,7 +19,7 @@ module GameOfLife
     end
 
     def adjustment
-      Adjust.new(generation).adjust
+      CellLinker.new(generation).link!
     end
 
     def statuses

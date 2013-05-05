@@ -35,7 +35,7 @@ module GameOfLife
     end
 
     def initialize_grid
-      @grid = Array.new(width){ |c| Array.new(height) }
+      @grid = Array.new(height){ |c| Array.new(width) }
     end
 
     def populate_grid
@@ -45,11 +45,11 @@ module GameOfLife
     end
 
     def grid_item cell
-      cell.status == 1 ? "*" : " "
+      cell.status == 1 ? "1" : "0"
     end
 
     def print!
-      puts grid.map{ |r| r.join }.join("\n")
+      puts grid.map{ |r| r.map{ |e| e.nil? ? " " : e  }.join }.join("\n")
     end
 
   end

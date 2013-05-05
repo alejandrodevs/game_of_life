@@ -26,7 +26,7 @@ module GameOfLife
     end
 
     def initialize_grid
-      @grid ||= Array.new(width){ |r| Array.new(height) }
+      @grid ||= Array.new(height){ |r| Array.new(width) }
     end
 
     def populate_grid
@@ -45,7 +45,7 @@ module GameOfLife
     end
 
     def link_cells
-
+      CellLinker.new(generation).link!
     end
 
     def load!
