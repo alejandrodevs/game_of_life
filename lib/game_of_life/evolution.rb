@@ -13,7 +13,7 @@ module GameOfLife
     end
 
     def evolution
-      generation.each_with_index do |cell, x|
+      generation.values.each_with_index do |cell, x|
         cell.status = statuses[x]
       end
     end
@@ -23,7 +23,7 @@ module GameOfLife
     end
 
     def statuses
-      @statuses ||= generation.map(&:dup).map(&:mitosis!)
+      @statuses ||= generation.values.map(&:dup).map(&:mitosis!)
     end
 
   end

@@ -1,5 +1,5 @@
 module GameOfLife
-  class Generation < Array
+  class Generation < Hash
 
     def initialize
       Seed.new(self).load!

@@ -1,3 +1,5 @@
+require 'benchmark'
+
 module GameOfLife
   class CellLinker
 
@@ -8,7 +10,7 @@ module GameOfLife
     end
 
     def link!
-      generation.each{ |c| link_neighborhood(c) }
+      generation.values.each{ |c| link_neighborhood(c) }
     end
 
     def link_neighborhood cell
@@ -22,9 +24,10 @@ module GameOfLife
     end
 
     def add_new_neighbor cell, pos
-      neighbor = Cell.new(coordinates(cell)[pos], 0)
+      position = coordinates(cell)[pos]
+      neighbor = Cell.new(position, 0)
       cell.neighbors.add(neighbor, pos)
-      generation << neighbor
+      generation.merge!(:"p#{position[0]}_#{position[1]}" => neighbor)
     end
 
     def neighbor? cell, pos
@@ -45,7 +48,7 @@ module GameOfLife
     end
 
     def cell? pos
-      generation.detect{ |c| [c.posx, c.posy] == pos }
+      generation[:"p#{pos[0]}_#{pos[1]}"]
     end
 
   end

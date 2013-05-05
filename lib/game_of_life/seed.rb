@@ -7,14 +7,11 @@ module GameOfLife
 
     def initialize generation
       @generation = generation
-    end
-
-    def file
-      File.open(DEFAULT_SEED, "r")
+      @grid = Array.new(height){ |r| Array.new(width) }
     end
 
     def lines
-      file.read.split("\n")
+      File.open(DEFAULT_SEED, "r").read.split("\n")
     end
 
     def height
@@ -23,10 +20,6 @@ module GameOfLife
 
     def width
       lines.first.split("").count
-    end
-
-    def initialize_grid
-      @grid ||= Array.new(height){ |r| Array.new(width) }
     end
 
     def populate_grid
@@ -39,20 +32,19 @@ module GameOfLife
     def populate_generation
       (0...width).each do |x|
         (0...height).each do |y|
-          generation << Cell.new([x, y], grid[x][y].to_i)
+          generation.merge!(generation_cell(x, y))
         end
       end
     end
 
-    def link_cells
-      CellLinker.new(generation).link!
+    def generation_cell x, y
+      {:"p#{x}_#{y}" => Cell.new([x, y], grid[x][y].to_i)}
     end
 
     def load!
-      initialize_grid
       populate_grid
       populate_generation
-      link_cells
+      CellLinker.new(generation).link!
     end
 
   end

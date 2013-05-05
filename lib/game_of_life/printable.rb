@@ -11,19 +11,19 @@ module GameOfLife
     end
 
     def min_posx
-      @min_posx ||= generation.map(&:posx).min
+      @min_posx ||= generation.values.map(&:posx).min
     end
 
     def max_posx
-      @max_posx ||= generation.map(&:posx).max
+      @max_posx ||= generation.values.map(&:posx).max
     end
 
     def min_posy
-      @min_posy ||= generation.map(&:posy).min
+      @min_posy ||= generation.values.map(&:posy).min
     end
 
     def max_posy
-      @max_posy ||= generation.map(&:posy).max
+      @max_posy ||= generation.values.map(&:posy).max
     end
 
     def height
@@ -39,7 +39,7 @@ module GameOfLife
     end
 
     def populate_grid
-      generation.each do |c|
+      generation.values.each do |c|
         grid[c.posy + min_posy.abs][c.posx + min_posx.abs] = grid_item(c)
       end
     end
