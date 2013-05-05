@@ -27,20 +27,20 @@ module GameOfLife
     end
 
     def height
-      max_posy - min_posy
+      (max_posy - min_posy) + 1
     end
 
     def width
-      max_posx - min_posx
+      (max_posx - min_posx) + 1
     end
 
     def initialize_grid
-      @grid = Array.new(height){ |c| Array.new(width) }
+      @grid = Array.new(width){ |c| Array.new(height) }
     end
 
     def populate_grid
       generation.each do |c|
-        grid[c.posx + min_posx.abs][c.posy + min_posy.abs] = grid_item(c)
+        grid[c.posy + min_posy.abs][c.posx + min_posx.abs] = grid_item(c)
       end
     end
 

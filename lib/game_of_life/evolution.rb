@@ -19,7 +19,7 @@ module GameOfLife
     end
 
     def adjustment
-      AdjustGeneration.new(generation).adjust
+      Adjust.new(generation).adjust
     end
 
     def statuses

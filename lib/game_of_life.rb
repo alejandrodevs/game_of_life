@@ -6,5 +6,6 @@ module GameOfLife
   autoload :Neighbors,  './game_of_life/neighbors.rb'
   autoload :Printable,  './game_of_life/printable.rb'
   autoload :Universe,   './game_of_life/universe.rb'
+  autoload :Seed,       './game_of_life/seed.rb'
 end
 

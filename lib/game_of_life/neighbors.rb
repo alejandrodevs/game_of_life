@@ -14,7 +14,7 @@ module GameOfLife
     end
 
     def alive
-      instances.map(&:status).reduce(&:+)
+      instances.map(&:status).reduce(&:+).to_i
     end
 
     def add cell, pos
