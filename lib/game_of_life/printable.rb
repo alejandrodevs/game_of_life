@@ -35,12 +35,12 @@ module GameOfLife
     end
 
     def initialize_grid
-      @grid ||= Array.new(height){ |c| Array.new(width) }
+      @grid = Array.new(height){ |c| Array.new(width) }
     end
 
     def populate_grid
       generation.each do |c|
-        @grid[c.posx + min_posx.abs][c.posy + min_posy.abs] = grid_item(c)
+        grid[c.posx + min_posx.abs][c.posy + min_posy.abs] = grid_item(c)
       end
     end
 
@@ -49,7 +49,7 @@ module GameOfLife
     end
 
     def print!
-      puts @grid.map{ |r| r.join }.join("\n")
+      puts grid.map{ |r| r.join }.join("\n")
     end
 
   end
