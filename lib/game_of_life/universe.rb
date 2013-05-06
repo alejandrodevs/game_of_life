@@ -13,5 +13,14 @@ module GameOfLife
       @generation.print!
     end
 
+    def start
+      while true
+        system("clear")
+        print
+        sleep(1)
+        evolve
+      end
+    end
+
   end
 end

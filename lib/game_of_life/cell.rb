@@ -1,7 +1,7 @@
 module GameOfLife
   class Cell
 
-    RULES = [[0,0,0,1,0,0,0,0,0], [0,0,1,1,1,0,0,0,0]]
+    RULES = [[0,0,0,1,0,0,0,0,0], [0,0,1,1,0,0,0,0,0]]
 
     attr_accessor :status, :posx, :posy
 
