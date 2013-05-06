@@ -19,7 +19,7 @@ module GameOfLife
 
     def link_cell cell, pos
       position = coordinates(cell)[pos]
-      neighbor = generation.get(neighbor_pos)
+      neighbor = generation.get(position)
 
       if neighbor.nil? && cell.alive?
         neighbor = Cell.new(position, 0)

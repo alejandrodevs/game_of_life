@@ -17,7 +17,7 @@ module GameOfLife
       while true
         system("clear")
         print
-        sleep(1)
+        sleep(0.2)
         evolve
       end
     end
