@@ -7,9 +7,9 @@ module GameOfLife
       @generation = generation
     end
 
-    def new_generation
+    def next!
       evolution
-      adjustment
+      CellLinker.new(generation).link!
     end
 
     def evolution
@@ -18,12 +18,12 @@ module GameOfLife
       end
     end
 
-    def adjustment
-      CellLinker.new(generation).link!
+    def statuses
+      @statuses ||= generation_dup.map(&:mitosis!)
     end
 
-    def statuses
-      @statuses ||= generation.values.map(&:dup).map(&:mitosis!)
+    def generation_dup
+      generation.values.map(&:dup)
     end
 
   end

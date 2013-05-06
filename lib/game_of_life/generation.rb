@@ -6,7 +6,7 @@ module GameOfLife
     end
 
     def evolve!
-      Evolution.new(self).new_generation
+      Evolution.new(self).next!
     end
 
     def print!

@@ -1,5 +1,3 @@
-require 'benchmark'
-
 module GameOfLife
   class CellLinker
 
