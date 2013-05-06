@@ -49,7 +49,7 @@ module GameOfLife
     end
 
     def print!
-      puts grid.map{ |r| r.map{ |e| e.nil? ? " " : e  }.join }.join("\n")
+      puts grid.map{ |r| r.map{ |e| e.nil? ? " " : e }.join }.join("\n")
     end
 
   end

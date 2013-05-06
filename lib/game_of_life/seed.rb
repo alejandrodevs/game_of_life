@@ -1,7 +1,7 @@
 module GameOfLife
   class Seed
 
-    DEFAULT_SEED = "game_of_life/seeds/default.txt"
+    SEED = "game_of_life/seeds/default.txt"
 
     attr_accessor :generation, :grid
 
@@ -11,7 +11,7 @@ module GameOfLife
     end
 
     def lines
-      File.open(DEFAULT_SEED, "r").read.split("\n")
+      File.open(SEED, "r").read.split("\n")
     end
 
     def height
@@ -32,12 +32,12 @@ module GameOfLife
     def populate_generation
       (0...width).each do |x|
         (0...height).each do |y|
-          generation.merge!(generation_cell(x, y))
+          generation.merge!(cell_hash(x, y))
         end
       end
     end
 
-    def generation_cell x, y
+    def cell_hash x, y
       {:"p#{x}_#{y}" => Cell.new([x, y], grid[x][y].to_i)}
     end
 

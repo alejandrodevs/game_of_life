@@ -13,5 +13,13 @@ module GameOfLife
       Printable.new(self).print!
     end
 
+    def add cell, pos
+      merge!(:"p#{pos[0]}_#{pos[1]}" => cell)
+    end
+
+    def get pos
+      send(:[], :"p#{pos[0]}_#{pos[1]}")
+    end
+
   end
 end

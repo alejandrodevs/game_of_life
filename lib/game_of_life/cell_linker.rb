@@ -12,24 +12,21 @@ module GameOfLife
     end
 
     def link_neighborhood cell
-      cell.neighbors.positions.each{ |pos| link_cell(cell, pos) }
+      cell.neighbors.positions.each do |pos|
+        link_cell(cell, pos) unless cell.neighbors[pos]
+      end
     end
 
     def link_cell cell, pos
-      neighbor = neighbor?(cell, pos)
-      cell.neighbors.add(neighbor, pos) if neighbor
-      add_new_neighbor(cell, pos) if neighbor.nil? && cell.alive?
-    end
-
-    def add_new_neighbor cell, pos
       position = coordinates(cell)[pos]
-      neighbor = Cell.new(position, 0)
-      cell.neighbors.add(neighbor, pos)
-      generation.merge!(:"p#{position[0]}_#{position[1]}" => neighbor)
-    end
+      neighbor = generation.get(neighbor_pos)
 
-    def neighbor? cell, pos
-      cell?(coordinates(cell)[pos])
+      if neighbor.nil? && cell.alive?
+        neighbor = Cell.new(position, 0)
+        generation.add(neighbor, position)
+      end
+
+      cell.neighbors.add(neighbor, pos) if neighbor
     end
 
     def coordinates cell
@@ -43,10 +40,6 @@ module GameOfLife
         :sw => [cell.posx + 1, cell.posy - 1],
         :se => [cell.posx - 1, cell.posy - 1]
       }
-    end
-
-    def cell? pos
-      generation[:"p#{pos[0]}_#{pos[1]}"]
     end
 
   end
